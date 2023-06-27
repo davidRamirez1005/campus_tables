@@ -123,3 +123,25 @@ const allProgress = document.querySelectorAll('main .card .progress');
 allProgress.forEach(item=> {
 	item.style.setProperty('--value', item.dataset.value)
 })
+
+
+const btnAbrirModal = document.getElementById("btnAbrirModal");
+const miModal = document.getElementById("miModal");
+const modalFondo = document.getElementById("modalFondo");
+const cerrarModal = document.querySelector("#miModal .cerrar");
+
+btnAbrirModal.addEventListener("click", function() {
+  miModal.style.display = "block";
+  modalFondo.style.display = "block";
+});
+
+cerrarModal.addEventListener("click", function() {
+  miModal.style.display = "none";
+  modalFondo.style.display = "none";
+});
+
+modalFondo.addEventListener("click", function() {
+  miModal.style.display = "none";
+  modalFondo.style.display = "none";
+});
+

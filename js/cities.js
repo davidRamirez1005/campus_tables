@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const url = "http://localhost/SkylAb-179/campus_tables/uploads/tipo";
+    const url = "http://localhost/SkylAb-179/campus_tables/uploads/city";
     const form = document.getElementById("myForm");
   
     // Cargar datos al cargar la página
@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           plantilla += `
             <tr>
                 <th scope="row">${val.id}</th>
-                <td>${val.name_area}</td>
+                <td>${val.name_city}</td>
+                <td>${val.id_region}</td>
                 <td>
-                  <button class="btn btn-primary edit" data-id="${val.id}" data-name="${val.name_area}">Editar</button>
+                  <button class="btn btn-primary edit" data-id="${val.id}" data-name="${val.name_city,val.id_region}">Editar</button>
                   <button class="btn btn-danger delete" data-id="${val.id}">Eliminar</button>
                 </td>
             </tr>
@@ -31,11 +32,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
   
     loadData();
+
     // (POST)
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      e.stopPropagation();
   
-      const nameArea = document.getElementById("name_area").value;
+      const name_city = document.getElementById("name_city").value;
+      const id_region = document.getElementById("id_region").value;
+
   
       try {
         const response = await fetch(url, {
@@ -43,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name_area: nameArea }),
+          body: JSON.stringify({ name_city: name_city, id_region : id_region }),
         });
   
         if (!response.ok) {
